@@ -4,8 +4,6 @@ A privacy-first, standalone local web dashboard offering a timeline "Sashimi" vi
 
 ## 🛡️ Privacy-First Browsing
 
-**Option 2: Local Click Tracking (The Forward-Looking, Privacy-First Way)**
-
 When you browse YouTube directly, Google tracks every thumbnail you hover over, every channel you scroll past, and the exact order of your browsing behavior. They use this to profile you and adjust their algorithmic manipulation.
 
 **With this Dashboard, Google is blind to your browsing behavior.**
