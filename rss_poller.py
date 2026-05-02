@@ -63,8 +63,8 @@ def run_rss_poller():
         cursor = conn.cursor()
         
         # We can only use RSS feeds for channels where we know the channel_id
-        # Prioritize most watched channels, then least recently scraped
-        cursor.execute("SELECT name, channel_id FROM channels WHERE channel_id IS NOT NULL ORDER BY local_views DESC, last_scraped_at ASC")
+        # Prioritize most watched channels, then least recently scraped, exclude Virtual channels
+        cursor.execute("SELECT name, channel_id FROM channels WHERE channel_id IS NOT NULL AND channel_id NOT LIKE 'VIRTUAL_%' ORDER BY local_views DESC, last_scraped_at ASC")
         channels = cursor.fetchall()
         
         total_added = 0
