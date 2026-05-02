@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Dashboard - TV Guide</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="/static/logo.png" alt="Dashboard Logo" class="app-logo">
+                </div>
+                <h1>PRIME CUT SASHIMI</h1>
+                <p class="subtitle">A YouTube Dashboard</p>
+                <span class="stats-separator">|</span>
+                <div class="stats">
+                    <span id="stat-channels">Loaded Channels: 0</span> | 
+                    <span id="stat-videos">Total Videos: 0</span>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="add-channel-box">
+                    <input type="text" id="add-channel-input" placeholder="Paste Channel URL...">
+                    <button id="btn-add-channel" class="btn">Add Channel</button>
+                </div>
+                <input type="text" id="search-box" placeholder="Search channels..." class="search-input">
+                <select id="sort-dropdown" class="sort-select">
+                    <option value="most_watched" selected>Sort by: Most Watched</option>
+                    <option value="latest">Sort by: Latest Upload</option>
+                    <option value="az">Sort by: A-Z</option>
+                </select>
+                <button id="btn-analytics" class="btn" style="background-color: #2196F3;">📊 Analytics</button>
+                <button id="btn-settings" class="btn" style="background-color: #444;">⚙️ Settings</button>
+                <button id="btn-refresh" class="btn">Update from RSS</button>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <aside class="sidebar">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <h3>Categories</h3>
+            </div>
+            <ul id="category-list">
+                <li class="category-item active" data-category="all">All Channels</li>
+                <!-- Categories injected here -->
+            </ul>
+            
+            <h3 style="margin-top: 20px;">Custom Folders</h3>
+            <ul id="custom-folder-list">
+                <!-- Custom Folders injected here -->
+            </ul>
+        </aside>
+        <div id="timeline-container">
+            <!-- Channels and videos will be injected here via JS -->
+            <div class="loading">Loading timeline...</div>
+        </div>
+    </main>
+
+    <!-- Status Toast Notification -->
+    <div id="status-toast" class="toast hidden">
+        <span class="toast-spinner">↻</span>
+        <span id="toast-message">Background task running...</span>
+    </div>
+
+    <!-- Modal for Analytics -->
+    <div id="analytics-modal" class="modal">
+        <div class="modal-content" style="padding: 20px; background-color: var(--card-bg); max-width: 800px; max-height: 90vh; overflow-y: auto;">
+            <span class="close-btn analytics-close-btn">&times;</span>
+            <h2>Viewing Analytics</h2>
+            
+            <div style="margin-top: 20px;">
+                <h3>Your Most Watched Channels</h3>
+                <ul id="analytics-top-channels" style="list-style: none; margin-top: 10px; color: var(--text-secondary);">
+                    <li>Loading...</li>
+                </ul>
+                
+                <h3 style="margin-top: 30px;">Your Favorite Genres</h3>
+                <ul id="analytics-top-genres" style="list-style: none; margin-top: 10px; color: var(--text-secondary);">
+                    <li>Loading...</li>
+                </ul>
+                
+                <h3 style="margin-top: 30px;">Total Watch History (Approx)</h3>
+                <div id="analytics-total-views" style="font-size: 24px; color: var(--accent); font-weight: bold; margin-top: 10px;">
+                    0 Views
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Settings -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content" style="padding: 20px; background-color: var(--card-bg); max-width: 500px;">
+            <span class="close-btn settings-close-btn">&times;</span>
+            <h2>Dashboard Settings</h2>
+            
+            <div style="margin-top: 20px;">
+                <h3>Keyword Muting (Anti-Algorithm Filter)</h3>
+                <p style="color: var(--text-secondary); font-size: 13px; margin-bottom: 10px;">Videos with these words in the title will be blurred out. Separate words with commas (e.g. drama, reaction, election).</p>
+                <input type="text" id="muted-keywords-input" placeholder="e.g. drama, reaction" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #444; background: var(--bg-color); color: white;">
+            </div>
+            
+            <div style="margin-top: 30px; text-align: right;">
+                <button id="btn-save-settings" class="btn">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Video Player -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="player-container"></div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
