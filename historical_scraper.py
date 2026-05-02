@@ -1,4 +1,4 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+#!/usr/bin/env python3
 # DESC: Scrapes historical video data for YouTube channels using native Python
 # DESC: Extracts channel ID from HTML and uses RSS feeds (fast, no yt-dlp bans)
 import sqlite3

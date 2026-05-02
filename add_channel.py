@@ -1,4 +1,4 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+#!/usr/bin/env python3
 # DESC: Adds a single new channel via URL, extracts ID, fetches category and latest videos.
 
 import sys
@@ -58,7 +58,7 @@ def add_channel(url):
     category = "Unknown"
     try:
         cmd = [
-            "/usr/bin/yt-dlp",
+            sys.executable, "-m", "yt_dlp",
             "--dump-json",
             "--playlist-items", "1",
             "--compat-options", "no-youtube-unavailable-videos",

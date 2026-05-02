@@ -1,4 +1,4 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+#!/usr/bin/env python3
 # DESC: Parses Google Takeout watch-history.json to populate local_views and is_watched status
 import json
 import sqlite3

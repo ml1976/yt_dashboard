@@ -1,4 +1,4 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+#!/usr/bin/env python3
 # DESC: Fetches YouTube channel metadata via RSS without using an API Key.
 # DESC: Parses XML feed into a structured format for local storage.
 # DESC: Designed to run as a cron job to keep the YT Dashboard updated.

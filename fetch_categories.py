@@ -1,4 +1,5 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+import sys
+#!/usr/bin/env python3
 # DESC: Background script to fetch channel categories (genres) using yt-dlp.
 # DESC: Designed to run slowly to avoid bans.
 
@@ -36,7 +37,7 @@ def fetch_categories():
             try:
                 # We only need info from 1 video to get the channel's general category
                 cmd = [
-                    "/usr/bin/yt-dlp",
+                    sys.executable, "-m", "yt_dlp",
                     "--dump-json",
                     "--playlist-items", "1",
                     "--compat-options", "no-youtube-unavailable-videos",

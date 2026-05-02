@@ -1,4 +1,4 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+#!/usr/bin/env python3
 import sqlite3
 import os
 from db import get_db_connection

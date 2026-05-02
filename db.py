@@ -1,4 +1,4 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+#!/usr/bin/env python3
 # DESC: Database schema and connection management for YT Dashboard
 # DESC: Initializes the SQLite database for channels and videos
 

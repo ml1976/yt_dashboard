@@ -1,4 +1,5 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+import sys
+#!/usr/bin/env python3
 # DESC: Background script to fetch popular live streams using yt-dlp.
 
 import sqlite3
@@ -25,7 +26,7 @@ def fetch_live_streams():
         print("Fetching top live streams...")
         
         cmd = [
-            "/usr/bin/yt-dlp",
+            sys.executable, "-m", "yt_dlp",
             "--dump-json",
             "--flat-playlist",
             "ytsearch50:live"

@@ -1,4 +1,5 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+import sys
+#!/usr/bin/env python3
 # DESC: Background script to fetch generic YouTube Trending videos using yt-dlp.
 
 import sqlite3
@@ -24,7 +25,7 @@ def fetch_trending():
         print("Fetching trending videos...")
         
         cmd = [
-            "/usr/bin/yt-dlp",
+            sys.executable, "-m", "yt_dlp",
             "--dump-json",
             "--flat-playlist",
             "ytsearch15:trending viral popular today"

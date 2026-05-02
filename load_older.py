@@ -1,4 +1,4 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+#!/usr/bin/env python3
 # DESC: Scrapes older historical video data for a specific channel
 import sqlite3
 import subprocess
@@ -24,7 +24,7 @@ def load_older_videos(channel_id):
     # Try /videos first, then /streams
     for tab in ['/videos', '/streams']:
         cmd = [
-            "/usr/bin/yt-dlp",
+            sys.executable, "-m", "yt_dlp",
             "--dump-json",
             "--playlist-items", "1-50",
             "--ignore-errors",

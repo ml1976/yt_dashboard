@@ -1,4 +1,5 @@
-#!/home/mladjo/.virtualenvs/tools/bin/python
+import sys
+#!/usr/bin/env python3
 # DESC: A lightweight web server using ONLY the standard library
 # DESC: Serves the YT Dashboard frontend and provides an API for video data
 
@@ -213,7 +214,7 @@ class YTDashboardHandler(SimpleHTTPRequestHandler):
             
         if parsed_url.path == '/api/scrape_rss':
             # Run the RSS poller in the background so we don't block the UI
-            os.system(f"/home/mladjo/.virtualenvs/tools/bin/python {os.path.join(os.path.dirname(__file__), 'rss_poller.py')} &")
+            os.system(f"\"{sys.executable}\" {os.path.join(os.path.dirname(__file__), 'rss_poller.py')} &")
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -228,7 +229,7 @@ class YTDashboardHandler(SimpleHTTPRequestHandler):
             
             if url:
                 import subprocess
-                cmd = ["/home/mladjo/.virtualenvs/tools/bin/python", os.path.join(os.path.dirname(__file__), "add_channel.py"), url]
+                cmd = [sys.executable, os.path.join(os.path.dirname(__file__), "add_channel.py"), url]
                 result = subprocess.run(cmd, capture_output=True, text=True)
                 
                 try:
@@ -257,7 +258,7 @@ class YTDashboardHandler(SimpleHTTPRequestHandler):
             return
             
         if parsed_url.path == '/api/fetch_categories':
-            os.system(f"/home/mladjo/.virtualenvs/tools/bin/python {os.path.join(os.path.dirname(__file__), 'fetch_categories.py')} &")
+            os.system(f"\"{sys.executable}\" {os.path.join(os.path.dirname(__file__), 'fetch_categories.py')} &")
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -265,7 +266,7 @@ class YTDashboardHandler(SimpleHTTPRequestHandler):
             return
             
         if parsed_url.path == '/api/fetch_live':
-            os.system(f"/home/mladjo/.virtualenvs/tools/bin/python {os.path.join(os.path.dirname(__file__), 'fetch_live.py')} &")
+            os.system(f"\"{sys.executable}\" {os.path.join(os.path.dirname(__file__), 'fetch_live.py')} &")
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -273,7 +274,7 @@ class YTDashboardHandler(SimpleHTTPRequestHandler):
             return
             
         if parsed_url.path == '/api/fetch_discovery':
-            os.system(f"/home/mladjo/.virtualenvs/tools/bin/python {os.path.join(os.path.dirname(__file__), 'fetch_discovery.py')} &")
+            os.system(f"\"{sys.executable}\" {os.path.join(os.path.dirname(__file__), 'fetch_discovery.py')} &")
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -281,7 +282,7 @@ class YTDashboardHandler(SimpleHTTPRequestHandler):
             return
             
         if parsed_url.path == '/api/fetch_trending':
-            os.system(f"/home/mladjo/.virtualenvs/tools/bin/python {os.path.join(os.path.dirname(__file__), 'fetch_trending.py')} &")
+            os.system(f"\"{sys.executable}\" {os.path.join(os.path.dirname(__file__), 'fetch_trending.py')} &")
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -291,7 +292,7 @@ class YTDashboardHandler(SimpleHTTPRequestHandler):
         if parsed_url.path == '/api/scrape_historical':
             # Run the historical scraper for a small batch (e.g. 5)
             # Run it in the background so we don't block the UI
-            os.system(f"/home/mladjo/.virtualenvs/tools/bin/python {os.path.join(os.path.dirname(__file__), 'historical_scraper.py')} 5 &")
+            os.system(f"\"{sys.executable}\" {os.path.join(os.path.dirname(__file__), 'historical_scraper.py')} 5 &")
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -303,7 +304,7 @@ class YTDashboardHandler(SimpleHTTPRequestHandler):
             query = parse_qs(parsed_url.query)
             channel_id = query.get('channel_id', [None])[0]
             if channel_id:
-                os.system(f"/home/mladjo/.virtualenvs/tools/bin/python {os.path.join(os.path.dirname(__file__), 'load_older.py')} {channel_id} &")
+                os.system(f"\"{sys.executable}\" {os.path.join(os.path.dirname(__file__), 'load_older.py')} {channel_id} &")
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
